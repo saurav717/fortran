@@ -1,8 +1,8 @@
 program mainProgram
   implicit none
 
-  real, dimension(3,4) :: a
-  real, dimension(3) :: x
+  real, dimension(:,:),allocatable :: a
+  real, dimension(:), allocatable :: x
   integer :: n
 
   n = 3
@@ -23,6 +23,15 @@ program mainProgram
   a(3,3) = 1
   a(3,4) = 4
 
+  write(*,*) "the augmented matrix"
+  call printMatrix(a,n,n+1)
+
+
   call gaussElimination(a,n,x)
+  print*, "the matrix after Gauss Elimination"
+
+  call printMatrix(a,n,n+1)
+
+  write(*,*)
 
 end program mainProgram
